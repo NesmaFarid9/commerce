@@ -23,7 +23,7 @@ export default async function SubCategoryBySlug({
   const response = await fetch(
     `https://ecommerce.routemisr.com/api/v1/subcategories/${slugId}`,
     {
-      cache: "force-cache",
+      cache: "no-store",
       next: { revalidate: 6000 },
     }
   );
@@ -99,15 +99,16 @@ export default async function SubCategoryBySlug({
 
                   {/* Add to Cart */}
                   <AddToCart productId={product.id!}>
-                    <ShoppingCart className="w-4 h-4" /> Add
+                    Add to cart
+                    {/* <ShoppingCart className="w-4 h-4" /> Add */}
                   </AddToCart>
 
                   {/* Remove Button */}
-                  <Button
+                  {/* <Button
                     variant="ghost"
                     size="icon"
                     className="text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition"
-                  ></Button>
+                  ></Button> */}
                 </div>
               </div>
             </div>
