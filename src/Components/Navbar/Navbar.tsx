@@ -19,7 +19,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
+} from "@/Components/ui/dropdown-menu";
 import { Button } from "../ui/button";
 
 export default function Navbar() {
@@ -109,7 +109,7 @@ export default function Navbar() {
 
               {/* Greeting */}
               <p className="hidden sm:block text-sm text-gray-700 font-medium">
-                Hi {session.data?.user?.name?.split(" ")[0]}
+                Hi <span>{session.data?.user?.name?.split(" ")[0]}</span>
               </p>
 
               {/* Profile Dropdown */}

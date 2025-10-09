@@ -48,7 +48,7 @@ export function LoginForm() {
     await signIn("credentials", {
       email: values.email,
       password: values.password,
-      callbackUrl: "/allmain",
+      callbackUrl: "/allhome",
       redirect: true,
     });
     setIsLoading(false);

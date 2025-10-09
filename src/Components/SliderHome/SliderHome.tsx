@@ -10,7 +10,7 @@ import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 
 export default function SliderHome() {
   return (
-    <div className="container mx-auto pt-10">
+    <div className="container mx-auto pt-10 px-4">
       <Carousel
         opts={{
           align: "start",
