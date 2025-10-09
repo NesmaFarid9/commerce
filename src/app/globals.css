@@ -11,11 +11,12 @@
     @apply text-2xl font-medium
   }
 }
-@layer utilities{
-  .container{
-    @apply mx-auto
+@layer utilities {
+  .container {
+    @apply max-w-[1500px] mx-auto px-4;
   }
 }
+
 .transition-colors {
   transition: color 0.2s ease, fill 0.2s ease;
 }
