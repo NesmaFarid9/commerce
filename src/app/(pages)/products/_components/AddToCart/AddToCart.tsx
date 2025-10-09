@@ -76,11 +76,11 @@ export default function AddToCart({ productId, children }: AddToCartProps) {
 
   return (
     <>
-      <CardFooter className="flex gap-2 mt-auto">
+      <CardFooter className="flex gap-1 mt-auto">
         <Button
           disabled={isLoading}
           onClick={addProductToCart}
-          className="grow flex items-center gap-2 text-lg not-only:cursor-pointer"
+          className="grow flex items-center gap-1 text-lg not-only:cursor-pointer"
         >
           {isLoading ? (
             <Loader2 className="animated-spin" />

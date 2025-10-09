@@ -76,7 +76,8 @@ export default function WishList() {
 
                 {/* Add to Cart */}
                 <AddToCart productId={product.id!}>
-                  <ShoppingCart className="w-4 h-4" /> Add
+                  Add to cart
+                  {/* <ShoppingCart className="w-4 h-4" /> Add */}
                 </AddToCart>
 
                 {/* Remove from Wishlist */}
