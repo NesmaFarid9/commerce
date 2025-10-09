@@ -4,14 +4,13 @@ import { Star, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "../../products/_components/AddToCart/AddToCart";
-
+export const dynamic = "force-dynamic";
 export default async function CategoryPage({
   params,
 }: {
   params: { categoryId: string };
 }) {
   const { categoryId } = params;
-
   const response = await fetch(
     `https://ecommerce.routemisr.com/api/v1/products?category=${categoryId}`,
     { cache: "no-store" }

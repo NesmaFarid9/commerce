@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 import AddToCart from "../../products/_components/AddToCart/AddToCart";
 import { Button } from "@/Components/ui/button";
-
+export const dynamic = "force-dynamic";
 interface SubCategoryBySlugProps {
   params: {
     slugId: string;
@@ -18,7 +18,6 @@ export default async function SubCategoryBySlug({
   params,
 }: SubCategoryBySlugProps) {
   const { slugId } = params;
-
   // Fetch single subcategory details
   const response = await fetch(
     `https://ecommerce.routemisr.com/api/v1/subcategories/${slugId}`,
@@ -33,7 +32,7 @@ export default async function SubCategoryBySlug({
   const responseProduct = await fetch(
     `https://ecommerce.routemisr.com/api/v1/products?subcategory=${slugId}`,
     {
-      cache: "force-cache",
+      cache: "no-store",
       next: { revalidate: 600 },
     }
   );

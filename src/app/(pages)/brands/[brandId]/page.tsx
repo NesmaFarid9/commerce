@@ -13,21 +13,19 @@ import {
 } from "@/Components/ui/card";
 import { formatCurrency } from "@/Uitaltis/formatPrice";
 import AddToCart from "../../products/_components/AddToCart/AddToCart";
-
+export const dynamic = "force-dynamic";
 export default async function SpecificBrand({
   params,
 }: {
   params: { brandId: string; brandName: string };
 }) {
   const { brandId } = params;
-
   // Fetch brand info
   const brandResponse = await fetch(
     `https://ecommerce.routemisr.com/api/v1/brands/${brandId}`,
     { method: "GET", cache: "no-store" }
   );
   const { data: brand }: { data: BrandI } = await brandResponse.json();
-
   // Fetch products by brand
   const productResponse = await fetch(
     `https://ecommerce.routemisr.com/api/v1/products?brand=${brandId}`,

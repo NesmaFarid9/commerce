@@ -9,10 +9,10 @@ import {
   CarouselPrevious,
 } from "@/Components/ui/carousel";
 import { Card, CardContent } from "@/Components/ui/card";
+export const dynamic = "force-dynamic";
 
 export default async function MainCategory() {
   let categories: CategoryI[] = [];
-
   try {
     const response = await fetch(
       "https://ecommerce.routemisr.com/api/v1/categories",

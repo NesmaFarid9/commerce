@@ -1,42 +1,48 @@
 "use client";
 
-import { Button } from "@/Components/ui/button";
-import { AllOrderI } from "@/interfaces/allOrderInterface";
-import { jwtDecode } from "jwt-decode";
-import { Loader2, ShoppingBag, CreditCard, Truck } from "lucide-react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-
+import { Loader2, ShoppingBag, CreditCard, Truck } from "lucide-react";
+import { Button } from "@/Components/ui/button";
+import { AllOrderI } from "@/interfaces/allOrderInterface";
+import { getUserToken } from "@/Uitaltis/getToken";
+import { jwtDecode } from "jwt-decode";
 export default function AllOrders() {
   const [orders, setOrders] = useState<AllOrderI[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const incodedToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzQwMDIxNmZlYWZjMDAzZDQ4ZjZmMyIsIm5hbWUiOiJBaG1lZCBBYmQgQWwtTXV0aSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU3NjEwOTMyLCJleHAiOjE3NjUzODY5MzJ9.CNHIWb6HykyYDG8GNXeTyMmB923nYx9HUSTGW7tRxrQ";
-
-  const { id }: { id: string } = jwtDecode(incodedToken);
-
-  async function getOrders() {
-    try {
-      const response = await fetch(
-        `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
-        { cache: "no-store" }
-      );
-      const payload = await response.json();
-      console.log("Orders payload:", payload);
-
-      const allOrders: AllOrderI[] = Array.isArray(payload) ? payload : [];
-      setOrders(allOrders);
-    } catch (err) {
-      console.error("Failed to fetch orders", err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    getOrders();
+    async function fetchOrders() {
+      try {
+        // Get token and decode user ID
+        const encodedToken = await getUserToken();
+        if (!encodedToken) {
+          console.error("No user token found");
+          setLoading(false);
+          return;
+        }
+        const { id }: { id: string } = jwtDecode(encodedToken);
+
+        // Fetch orders
+        const response = await fetch(
+          `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
+          { cache: "no-store" } // ensures always fresh data
+        );
+
+        if (!response.ok) throw new Error("Failed to fetch orders");
+
+        const payload = await response.json();
+        const allOrders: AllOrderI[] = Array.isArray(payload) ? payload : [];
+        setOrders(allOrders);
+      } catch (err) {
+        console.error("Failed to fetch orders", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchOrders();
   }, []);
 
   if (loading) {

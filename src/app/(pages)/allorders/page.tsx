@@ -7,6 +7,7 @@ import { Loader2, ShoppingBag, CreditCard, Truck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+export const dynamic = "force-dynamic";
 
 export default function AllOrders() {
   const [lastOrder, setLastOrder] = useState<AllOrderI | null>(null);

@@ -1,5 +1,6 @@
 import { SubcategoryI } from "@/interfaces/subCategory";
 import Link from "next/link";
+export const dynamic = "force-dynamic";
 
 export default async function SubCategories() {
   // Fetch Subcategories
@@ -7,7 +8,7 @@ export default async function SubCategories() {
     `https://ecommerce.routemisr.com/api/v1/subcategories`,
     {
       method: "GET",
-      cache: "force-cache",
+      cache: "no-store",
       next: { revalidate: 6000 },
     }
   );
