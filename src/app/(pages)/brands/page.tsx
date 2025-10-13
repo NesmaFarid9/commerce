@@ -15,6 +15,7 @@ export default async function Brands() {
     `https://ecommerce.routemisr.com/api/v1/brands`,
     {
       method: "GET",
+      cache: "no-store",
     }
   );
   const { data: brands }: { data: BrandI[] } = await response.json();

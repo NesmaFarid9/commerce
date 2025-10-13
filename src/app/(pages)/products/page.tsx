@@ -3,15 +3,14 @@ import { productI } from "./../../../interfaces/product";
 import Image from "next/image";
 import Link from "next/link";
 import { formatCurrency } from "./../../../Uitaltis/formatPrice";
-import { Star, ShoppingCart } from "lucide-react";
+import { Star } from "lucide-react";
 import AddToCart from "./_components/AddToCart/AddToCart";
-import { Button } from "@/Components/ui/button";
 
 export default async function Products() {
   const response = await fetch(
     `https://ecommerce.routemisr.com/api/v1/products`,
     {
-      next: { revalidate: 10 * 60 },
+      next: { revalidate: 60 },
     }
   );
   const { data: products }: { data: productI[] } = await response.json();

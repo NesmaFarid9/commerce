@@ -34,10 +34,8 @@ export default function SliderHome() {
                   priority={index === 0}
                   className="object-cover"
                 />
-                {/* Gradient overlay for better text contrast */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
 
-                {/* Optional text overlay */}
                 <div className="absolute bottom-8 left-6 text-white space-y-2">
                   <h2 className="text-2xl md:text-4xl font-bold drop-shadow-md">
                     Welcome to Our Store

@@ -4,6 +4,7 @@ import Brands from "../brands/page";
 import Products from "../products/page";
 import SliderHome from "@/Components/SliderHome/SliderHome";
 
+export const dynamic = "force-dynamic"; 
 export default function AllHome() {
   return (
     <>
