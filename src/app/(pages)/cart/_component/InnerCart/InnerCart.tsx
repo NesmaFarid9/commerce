@@ -1,13 +1,12 @@
 "use client";
 
 import { Loader2, Trash2 } from "lucide-react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "@/Context/CartContext";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { CartResponse } from "@/interfaces/cartInterface";
 import CheckoutSession from "../CheckoutSession/CheckoutSession";
-// import { getUserToken } from "@/Uitaltis/getToken";
 import { Card, CardContent, CardFooter } from "@/Components/ui/card";
 import { formatCurrency } from "@/Uitaltis/formatPrice";
 import Image from "next/image";
@@ -20,28 +19,23 @@ export default function InnerCart() {
   const [isRemoveItemId, setIsRemoveItemId] = useState<null | string>(null);
   const [isUpdateItemId, setIsUpdateItemId] = useState<null | string>(null);
 
-  useEffect(() => {
-    if (
-      cartData &&
-      typeof cartData?.data?.products?.[0]?.product === "string"
-    ) {
-      getCart();
-    }
-  }, [cartData, getCart]);
+  React.useEffect(() => {
+    getCart();
+  }, [getCart]);
 
+  //  Clear Cart
   async function clearCart() {
     try {
       setIsLoadingClearing(true);
       const token = await getUserToken();
-      if (!token) {
-        toast.error("Please login first");
-        return;
-      }
+      if (!token) return toast.error("Please login first");
+
       const res = await fetch(`https://ecommerce.routemisr.com/api/v1/cart`, {
         method: "DELETE",
         headers: { token: token + "" },
       });
       if (!res.ok) throw new Error("Failed to clear cart");
+
       setCartData(null);
       toast.success("Cart cleared successfully 🧹");
     } catch {
@@ -51,6 +45,7 @@ export default function InnerCart() {
     }
   }
 
+  // Remove item
   async function removeCartItem(productId: string) {
     try {
       setIsRemoveItemId(productId);
@@ -63,8 +58,8 @@ export default function InnerCart() {
         }
       );
       const payload: CartResponse = await res.json();
-      toast.success("Item removed 🗑️");
       setCartData(payload.numOfCartItems > 0 ? payload : null);
+      toast.success("Item removed 🗑️");
     } catch {
       toast.error("Failed to remove item ❌");
     } finally {
@@ -72,6 +67,7 @@ export default function InnerCart() {
     }
   }
 
+  // Change count
   async function changeCountProduct(productId: string, count: number) {
     try {
       setIsUpdateItemId(productId);
@@ -96,6 +92,7 @@ export default function InnerCart() {
     }
   }
 
+  // Empty Cart View
   if (!cartData?.data?.products?.length) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen text-center space-y-5 animate-fadeIn">
@@ -115,9 +112,9 @@ export default function InnerCart() {
     );
   }
 
+  // Cart UI
   return (
     <div className="container mx-auto px-4 py-12 animate-fadeIn">
-      {/* Header */}
       <div className="text-center md:text-left mb-12">
         <h1 className="text-4xl font-bold text-gray-900 flex items-center justify-center md:justify-start gap-2">
           🛒 Your Shopping Cart
@@ -127,7 +124,6 @@ export default function InnerCart() {
         </p>
       </div>
 
-      {/* Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Cart Items */}
         <div className="lg:col-span-2 space-y-6">
@@ -222,7 +218,7 @@ export default function InnerCart() {
 
         {/* Order Summary */}
         <div className="lg:col-span-1 space-y-4">
-          <h2 className="text-2xl font-semibold p-0 text-gray-900">
+          <h2 className="text-2xl font-semibold text-gray-900">
             Order Summary
           </h2>
           <Card className="sticky top-24 rounded-2xl shadow-lg border p-7 border-gray-200">
@@ -252,12 +248,11 @@ export default function InnerCart() {
               >
                 <Link href={"/products"}>Continue Shopping</Link>
               </Button>
-              {/* Clear All */}
               <Button
                 disabled={isLoadingClearing}
                 onClick={() => clearCart()}
                 variant="outline"
-                className="w-full border-[#FF6F61] cursor-pointer text-[#FF6F61] hover:bg-[#FF6F61]/10 transition-all duration-200 flex items-center justify-center gap-2 rounded-lg py-3 font-medium sticky bottom-0"
+                className="w-full border-[#FF6F61] cursor-pointer text-[#FF6F61] hover:bg-[#FF6F61]/10 transition-all duration-200 flex items-center justify-center gap-2 rounded-lg py-3 font-medium"
               >
                 {isLoadingClearing ? (
                   <Loader2 className="animate-spin text-[#FF6F61]" />

@@ -2,7 +2,7 @@ import { BrandI } from "@/interfaces/brandInterface";
 import Image from "next/image";
 
 import { productI } from "@/interfaces/product";
-import { Star, ShoppingCart } from "lucide-react";
+import { Star } from "lucide-react";
 import Link from "next/link";
 import {
   Card,
@@ -100,7 +100,7 @@ export default async function SpecificBrand({
                     <div className="bg-[#FF6F61] text-white px-4 py-1.5 rounded-lg font-semibold text-sm">
                       {formatCurrency(product.price!)}
                     </div>
-                    <AddToCart productId={product.id!}>Add to Cart</AddToCart>
+                    <AddToCart productId={product.id!}>Add to cart</AddToCart>
                   </div>
                 </CardContent>
               </div>
