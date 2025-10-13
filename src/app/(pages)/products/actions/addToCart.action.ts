@@ -35,7 +35,7 @@ export async function AddToCartAction(productId: string): Promise<CartResponse |
       return null;
     }
 
-    const response = await fetch(`${process.env.NEXT_API}/cart`, {
+    const response = await fetch(`https://ecommerce.routemisr.com/api/v1/cart`, {
       method: "POST",
       body: JSON.stringify({ productId }),
       headers: {

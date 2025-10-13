@@ -100,9 +100,7 @@ export default async function SpecificBrand({
                     <div className="bg-[#FF6F61] text-white px-4 py-1.5 rounded-lg font-semibold text-sm">
                       {formatCurrency(product.price!)}
                     </div>
-                    <AddToCart productId={product.id!}>
-                      <ShoppingCart className="w-4 h-4" /> Add to Cart
-                    </AddToCart>
+                    <AddToCart productId={product.id!}>Add to Cart</AddToCart>
                   </div>
                 </CardContent>
               </div>

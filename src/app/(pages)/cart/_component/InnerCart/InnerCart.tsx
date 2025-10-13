@@ -7,6 +7,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { CartResponse } from "@/interfaces/cartInterface";
 import CheckoutSession from "../CheckoutSession/CheckoutSession";
+// import { getUserToken } from "@/Uitaltis/getToken";
 import { Card, CardContent, CardFooter } from "@/Components/ui/card";
 import { formatCurrency } from "@/Uitaltis/formatPrice";
 import Image from "next/image";
