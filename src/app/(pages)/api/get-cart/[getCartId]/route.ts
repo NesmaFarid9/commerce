@@ -1,7 +1,12 @@
 import { getUserToken } from "@/Uitaltis/getToken";
+import toast from "react-hot-toast";
 
 export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
   const token = await getUserToken();
+  if (!token) {
+  toast.error("Please login first");
+  return;
+}
   const res = await fetch(`${process.env.NEXT_API}/cart/${params.id}`, {
     method: "DELETE",
     headers: { token: token ?? "" },
@@ -12,6 +17,10 @@ export async function DELETE(_req: Request, { params }: { params: { id: string }
 
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   const token = await getUserToken();
+  if (!token) {
+  toast.error("Please login first");
+  return;
+}
   const body = await req.json();
   const res = await fetch(`${process.env.NEXT_API}/cart/${params.id}`, {
     method: "PUT",

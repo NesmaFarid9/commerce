@@ -6,8 +6,9 @@ import Link from "next/link";
 import { Loader2, ShoppingBag, CreditCard, Truck } from "lucide-react";
 import { Button } from "@/Components/ui/button";
 import { AllOrderI } from "@/interfaces/allOrderInterface";
-import { getUserToken } from "@/Uitaltis/getToken";
+// import { getUserToken } from "@/Uitaltis/getToken";
 import { jwtDecode } from "jwt-decode";
+import { getUserToken } from "@/Uitaltis/getToken";
 export default function AllOrders() {
   const [orders, setOrders] = useState<AllOrderI[]>([]);
   const [loading, setLoading] = useState(true);
@@ -17,6 +18,7 @@ export default function AllOrders() {
       try {
         // Get token and decode user ID
         const encodedToken = await getUserToken();
+
         if (!encodedToken) {
           console.error("No user token found");
           setLoading(false);
@@ -27,7 +29,7 @@ export default function AllOrders() {
         // Fetch orders
         const response = await fetch(
           `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
-          { cache: "no-store" } // ensures always fresh data
+          { cache: "no-store" }
         );
 
         if (!response.ok) throw new Error("Failed to fetch orders");

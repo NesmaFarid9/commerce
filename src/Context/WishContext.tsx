@@ -39,6 +39,10 @@ export default function WishContextProvider({
     try {
       setIsLoadingWish(true);
       const token = await getUserToken();
+      if (!token) {
+        toast.error("Please login first");
+        return;
+      }
       const response = await fetch(
         `https://ecommerce.routemisr.com/api/v1/wishlist`,
         {

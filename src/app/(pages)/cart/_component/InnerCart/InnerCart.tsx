@@ -7,11 +7,12 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { CartResponse } from "@/interfaces/cartInterface";
 import CheckoutSession from "../CheckoutSession/CheckoutSession";
-import { getUserToken } from "@/Uitaltis/getToken";
+// import { getUserToken } from "@/Uitaltis/getToken";
 import { Card, CardContent, CardFooter } from "@/Components/ui/card";
 import { formatCurrency } from "@/Uitaltis/formatPrice";
 import Image from "next/image";
 import { Button } from "@/Components/ui/button";
+import { getUserToken } from "@/Uitaltis/getToken";
 
 export default function InnerCart() {
   const { cartData, getCart, setCartData } = useContext(CartContext);
@@ -32,6 +33,10 @@ export default function InnerCart() {
     try {
       setIsLoadingClearing(true);
       const token = await getUserToken();
+      if (!token) {
+        toast.error("Please login first");
+        return;
+      }
       const res = await fetch(`https://ecommerce.routemisr.com/api/v1/cart`, {
         method: "DELETE",
         headers: { token: token + "" },
@@ -247,7 +252,7 @@ export default function InnerCart() {
               >
                 <Link href={"/products"}>Continue Shopping</Link>
               </Button>
-              {/* Fixed Clear All */}
+              {/* Clear All */}
               <Button
                 disabled={isLoadingClearing}
                 onClick={() => clearCart()}

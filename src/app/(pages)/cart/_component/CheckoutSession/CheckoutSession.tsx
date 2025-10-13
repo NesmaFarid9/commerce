@@ -18,6 +18,7 @@ import {
 import { Button } from "@/Components/ui/button";
 import { Label } from "@/Components/ui/label";
 import { Input } from "@/Components/ui/input";
+import toast from "react-hot-toast";
 
 export default function CheckoutSession({ cartId }: { cartId: string }) {
   const city = useRef<HTMLInputElement>(null);
@@ -39,7 +40,10 @@ export default function CheckoutSession({ cartId }: { cartId: string }) {
     try {
       const shippingAddress = getShippingAddress();
       const token = await getUserToken();
-
+      if (!token) {
+        toast.error("Please login first");
+        return;
+      }
       const response = await fetch(
         `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${location.origin}`,
         {
