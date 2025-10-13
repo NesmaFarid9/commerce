@@ -32,7 +32,7 @@ export async function GET() {
       );
     }
 
-    const response = await fetch(`${process.env.NEXT_API}/cart`, {
+    const response = await fetch(`https://ecommerce.routemisr.com/api/v1/cart`, {
       method: "GET",
       headers: {
         token: token + "",
