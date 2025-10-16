@@ -35,7 +35,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <h1 className="text-xl sm:text-2xl font-bold text-[#FF6F61] tracking-tight">
-          <Link href="/" className="flex items-center gap-1">
+          <Link href="/allhome" className="flex items-center gap-1">
             Shopping{" "}
             <span className="bg-[#FF6F61] px-2 py-1 rounded text-white shadow-sm text-xl">
               N

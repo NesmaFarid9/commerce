@@ -74,16 +74,7 @@ export default async function Products() {
                   {/* Add to Cart */}
                   <AddToCart productId={product.id!}>
                     Add to cart
-                    {/* <ShoppingCart className="w-4 h-4" />  */}
                   </AddToCart>
-
-                  {/* Remove from Wishlist */}
-                  {/* <Button
-                    variant="ghost"
-                    size="icon"
-                    className="text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition"
-                    // onClick={() => handleRemove(product.id)} // if you implement remove
-                  ></Button> */}
                 </div>
               </div>
             </div>
