@@ -91,7 +91,7 @@ export default function CartContextProvider({
     try {
       if (session.status === "authenticated") {
         setIsLoading(true);
-        const response = await fetch(`/api/cart`);
+        const response = await fetch(`/api/get-cart`);
         const payload = await response.json();
         // console.log(payload);
         setCartData(payload);
