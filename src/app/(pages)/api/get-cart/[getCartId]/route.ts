@@ -39,7 +39,7 @@ import { getUserToken } from "@/Uitaltis/getToken";
 
 export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
   const token = await getUserToken();
-  const res = await fetch(`${process.env.NEXT_API}/cart/${params.id}`, {
+  const res = await fetch(`https://ecommerce.routemisr.com/api/v1/cart/${params.id}`, {
     method: "DELETE",
     headers: { token: token ?? "" },
   });
@@ -50,7 +50,7 @@ export async function DELETE(_req: Request, { params }: { params: { id: string }
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   const token = await getUserToken();
   const body = await req.json();
-  const res = await fetch(`${process.env.NEXT_API}/cart/${params.id}`, {
+  const res = await fetch(`https://ecommerce.routemisr.com/api/v1/cart/${params.id}`, {
     method: "PUT",
     headers: {
       token: token ?? "",
