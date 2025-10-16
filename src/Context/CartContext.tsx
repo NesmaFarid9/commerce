@@ -91,9 +91,7 @@ export default function CartContextProvider({
     try {
       if (session.status === "authenticated") {
         setIsLoading(true);
-        const response = await fetch(
-          `https://ecommerce.routemisr.com/api/v1/api/get-cart`
-        );
+        const response = await fetch(`/api/cart`);
         const payload = await response.json();
         // console.log(payload);
         setCartData(payload);
