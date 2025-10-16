@@ -8,7 +8,7 @@ export async function getUserTokenServer() {
 
   const decoded = await decode({
     token,
-    secret: process.env.NEXTAUTH_SECRET!,
+    secret: process.env.AUTH_SECRET!,
   });
 
   return decoded?.token ?? null;

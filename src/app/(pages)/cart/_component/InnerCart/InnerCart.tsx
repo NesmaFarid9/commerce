@@ -1071,11 +1071,10 @@ export default function InnerCart() {
                     <div className="flex items-center gap-2">
                       <Button
                         disabled={
-                          isUpdateItemId === item.product._id ||
-                          item.count === 1
+                          isUpdateItemId === item.product.id || item.count === 1
                         }
                         onClick={() =>
-                          changeCountProduct(item.product._id!, item.count - 1)
+                          changeCountProduct(item.product.id!, item.count - 1)
                         }
                         size="sm"
                         variant="outline"
@@ -1085,7 +1084,7 @@ export default function InnerCart() {
                       </Button>
 
                       <span className="min-w-[28px] text-center font-medium">
-                        {isUpdateItemId === item.product._id ? (
+                        {isUpdateItemId === item.product.id ? (
                           <Loader2 className="animate-spin w-4 h-4 text-[#FF6F61]" />
                         ) : (
                           item.count
@@ -1094,11 +1093,11 @@ export default function InnerCart() {
 
                       <Button
                         disabled={
-                          isUpdateItemId === item.product._id ||
+                          isUpdateItemId === item.product.id ||
                           item.product.quantity === item.count
                         }
                         onClick={() =>
-                          changeCountProduct(item.product._id!, item.count + 1)
+                          changeCountProduct(item.product.id!, item.count + 1)
                         }
                         size="sm"
                         variant="outline"
@@ -1112,7 +1111,7 @@ export default function InnerCart() {
 
                 <Button
                   disabled={isRemoveItemId === item.product._id}
-                  onClick={() => removeCartItem(item.product._id!)}
+                  onClick={() => removeCartItem(item.product.id!)}
                   variant="ghost"
                   size="icon"
                   className="hover:bg-red-50 rounded-full transition cursor-pointer"

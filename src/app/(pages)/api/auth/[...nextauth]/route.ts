@@ -40,7 +40,7 @@ const handler = NextAuth({
         signIn: '/login',
         error: '/login'
     },
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: process.env.AUTH_SECRET,
     callbacks: {
         jwt:({token, user}) => {
             if(user){
@@ -89,7 +89,7 @@ export { handler as GET, handler as POST }
 //   pages: {
 //     signIn: "/login",
 //   },
-//   secret: process.env.NEXTAUTH_SECRET,
+//   secret: process.env.AUTH_SECRET,
 // }
 
 // const handler = NextAuth(authOptions)

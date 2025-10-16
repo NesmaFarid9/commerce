@@ -7,7 +7,7 @@
 //   const token = (await cookies()).get("next-auth.session-token")?.value;
 //   const accessToken = await decode({
 //     token,
-//     secret: process.env.NEXTAUTH_SECRET!,
+//     secret: process.env.AUTH_SECRET!,
 //   });
 //   return accessToken?.token;
 // }
@@ -32,7 +32,7 @@ export async function getUserToken() {
 
   const decoded = await decode({
     token: tokenFromCookie,
-    secret: process.env.NEXTAUTH_SECRET!,
+    secret: process.env.AUTH_SECRET!,
   });
   const userToken = decoded?.token;
   if(!userToken){
