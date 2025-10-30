@@ -1,12 +1,11 @@
 import { SubcategoryI } from "@/interfaces/subCategory";
 import { productI } from "@/interfaces/product";
 import { formatCurrency } from "@/Uitaltis/formatPrice";
-import { ShoppingCart, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import AddToCart from "../../products/_components/AddToCart/AddToCart";
-import { Button } from "@/Components/ui/button";
 export const dynamic = "force-dynamic";
 interface SubCategoryBySlugProps {
   params: {
@@ -99,15 +98,8 @@ export default async function SubCategoryBySlug({
                   {/* Add to Cart */}
                   <AddToCart productId={product.id!}>
                     Add to cart
-                    {/* <ShoppingCart className="w-4 h-4" /> Add */}
                   </AddToCart>
 
-                  {/* Remove Button */}
-                  {/* <Button
-                    variant="ghost"
-                    size="icon"
-                    className="text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition"
-                  ></Button> */}
                 </div>
               </div>
             </div>

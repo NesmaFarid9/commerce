@@ -1,6 +1,6 @@
 import { productI } from "@/interfaces/product";
 import { formatCurrency } from "@/Uitaltis/formatPrice";
-import { Star, ShoppingCart } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "../../products/_components/AddToCart/AddToCart";
@@ -84,7 +84,6 @@ export default async function CategoryPage({
                 {/* Add to Cart */}
                 <AddToCart productId={product.id!}>
                   Add to cart
-                  {/* <ShoppingCart className="w-4 h-4" /> Add */}
                 </AddToCart>
               </div>
             </div>

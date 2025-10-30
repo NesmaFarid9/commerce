@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Loader2, ShoppingBag, CreditCard, Truck } from "lucide-react";
 import { Button } from "@/Components/ui/button";
 import { AllOrderI } from "@/interfaces/allOrderInterface";
-// import { getUserToken } from "@/Uitaltis/getToken";
 import { jwtDecode } from "jwt-decode";
 import { getUserToken } from "@/Uitaltis/getToken";
 export default function AllOrders() {
@@ -169,7 +168,6 @@ export default function AllOrders() {
         ))}
       </div>
 
-      {/* Back Button */}
       <div className="mt-10 text-center">
         <Button className="bg-[#FF6F61] hover:bg-[#e65a4f] text-white shadow-sm transition">
           <Link href="/">Continue Shopping</Link>

@@ -1,20 +1,3 @@
-// "use server";
-
-// import { decode } from "next-auth/jwt";
-// import { cookies } from "next/headers";
-
-// export async function getUserToken() {
-//   const token = (await cookies()).get("next-auth.session-token")?.value;
-//   const accessToken = await decode({
-//     token,
-//     secret: process.env.AUTH_SECRET!,
-//   });
-//   return accessToken?.token;
-// }
-// //////////////////////////////
-// //////////////////////////////
-// //////////////////////////////
-
 "use server";
 
 import { decode } from "next-auth/jwt";
@@ -41,18 +24,4 @@ export async function getUserToken() {
 
   return userToken;
 }
-// export function getUserToken(): string | null {
-//   if (typeof document === "undefined") return null;
-
-//   const token = document.cookie
-//     .split("; ")
-//     .find(
-//       (c) =>
-//         c.startsWith("next-auth.session-token=") ||
-//         c.startsWith("__Secure-next-auth.session-token=")
-//     )
-//     ?.split("=")[1];
-
-//   return token || null;
-// }
 

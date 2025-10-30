@@ -9,10 +9,12 @@ import {
   CarouselPrevious,
 } from "@/Components/ui/carousel";
 import { Card, CardContent } from "@/Components/ui/card";
+
 export const dynamic = "force-dynamic";
 
 export default async function MainCategory() {
   let categories: CategoryI[] = [];
+
   try {
     const response = await fetch(
       "https://ecommerce.routemisr.com/api/v1/categories",
@@ -34,7 +36,6 @@ export default async function MainCategory() {
     console.error("Failed to load categories:", error);
   }
 
-  // Fallback UI if no categories
   if (!categories || categories.length === 0) {
     return (
       <div className="py-20 text-center text-gray-500">
@@ -44,22 +45,30 @@ export default async function MainCategory() {
   }
 
   return (
-    <>
-      <div className="w-full max-w-6xl mx-auto py-12">
-        <h2 className="text-center text-3xl md:text-4xl font-extrabold tracking-tight text-[#FF6F61] mb-10">
+    <section className="w-full px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#FF6F61] mb-10">
           Our Categories
         </h2>
-        <Carousel className="pt-10 mx-auto w-full max-w-7xl">
+
+        <Carousel className="w-full">
           <CarouselContent>
             {categories.map((category) => (
               <CarouselItem
                 key={category._id}
-                className="basis-1/3 md:basis-1/4 lg:basis-1/6"
+                className="
+                  basis-1/2
+                  sm:basis-1/3
+                  md:basis-1/4
+                  lg:basis-1/5
+                  xl:basis-1/6
+                  p-2
+                "
               >
-                <Card className="overflow-hidden rounded-xl shadow hover:shadow-lg transition-all duration-300">
+                <Card className="overflow-hidden rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 bg-white">
                   <Link href={`/categories/${category._id}`}>
                     <CardContent className="p-4 flex flex-col items-center">
-                      <div className="w-40 h-40 md:w-44 md:h-44 flex items-center justify-center">
+                      <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 flex items-center justify-center">
                         <Image
                           src={category.image}
                           alt={category.name}
@@ -68,7 +77,7 @@ export default async function MainCategory() {
                           className="object-contain w-full h-full transition-transform duration-300 hover:scale-105"
                         />
                       </div>
-                      <p className="mt-3 font-medium text-gray-800 text-sm md:text-base text-center line-clamp-1">
+                      <p className="mt-3 font-medium text-gray-800 text-sm sm:text-base text-center line-clamp-1">
                         {category.name}
                       </p>
                     </CardContent>
@@ -77,10 +86,11 @@ export default async function MainCategory() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex -left-10" />
-          <CarouselNext className="hidden sm:flex -right-10" />
+
+          <CarouselPrevious className="hidden md:flex -left-8" />
+          <CarouselNext className="hidden md:flex -right-8" />
         </Carousel>
       </div>
-    </>
+    </section>
   );
 }
